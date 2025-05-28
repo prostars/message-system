@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: message-system-push
+  kafka:
+    bootstrap-servers: localhost:19094,localhost:19095,localhost:19096
+    consumer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      auto-offset-rest: latest
+      properties:
+        allow.auto.create.topics: false
+        enable.auto.commit: false
+        partition.assignment.strategy: org.apache.kafka.clients.consumer.CooperativeStickyAssignor
+
+message-system:
+  kafka:
+    listeners:
+      push:
+        topic: push-notification
+        group-id: push-group
+        concurrency: 3

@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: message-system-add-kafka
+  datasource:
+    source:
+      hikari:
+        jdbc-url: jdbc:mysql://localhost:13306/messagesystem
+        username: dev_user
+        password: dev_password
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        pool-name: SourceConnectionPool
+        minimum-idle: 10
+        maximum-pool-size: 20
+        idle-timeout: 60000
+        connection-timeout: 30000
+    replica:
+      hikari:
+        jdbc-url: jdbc:mysql://localhost:13307/messagesystem
+        username: dev_user
+        password: dev_password
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        pool-name: ReplicaConnectionPool
+        minimum-idle: 10
+        maximum-pool-size: 20
+        idle-timeout: 60000
+        connection-timeout: 30000
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
+  data:
+    redis:
+      host: localhost
+      port: 16379
+      repositories:
+        enabled: false
+  kafka:
+    bootstrap-servers: localhost:19094,localhost:19095,localhost:19096
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        delivery.timeout.ms: 10000
+        request.timeout.ms: 3000
+        retry.backoff.ms: 100
+
+message-system:
+  kafka:
+    listeners:
+      push:
+        topic: push-notification
