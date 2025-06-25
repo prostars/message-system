@@ -83,3 +83,39 @@ https://fastcampus.co.kr/dev_online_chat
   * **Ch4 오프라인 사용자에게도 메시지 전달을 위한 푸시 알림 기능**  
     3\. 채팅 프로젝트에 오프라인 사용자를 위한 푸시 알림 기능 추가
     * part3/ch4/03-message-system-add-push
+
+* **Part4 서비스 부하 분산을 위한 분리 시작**
+  * **Ch1 데이터베이스의 고가용성 확보와 성능 개선을 위한 리플리카**  
+    2\. Docker Compose를 사용한 로컬 데이터베이스 리플리카 구성
+    * part4/ch1/02-preview-localdb-replica
+    
+    3\. 스프링 부트 JPA 멀티 데이터소스 설정을 사용한 읽기 전용 데이터베이스 설정
+    * part4/ch1/03-preview-multi-datasource
+
+    4\. 스프링 부트 JPA 멀티 데이터소스 설정을 사용한 읽기 전용 데이터베이스 설정
+    * part4/ch1/04-message-system-add-replica
+  * **Ch2 성능 개선과 데이터베이스 보호를 위한 레디스 연동**  
+    2\. 스프링 부트 캐시로 캐싱 레이어 추가
+    * part4/ch2/02-preview-multi-datasource-add-cache
+
+    3\. 채팅 프로젝트에 캐싱 레이어 추가
+    * part4/ch2/03-message-system-add-cache
+  * **Ch3 모놀리틱 서비스 분해를 위한 단방향 카프카 연동**  
+    3\. Docker Compose를 사용한 로컬 카프카 구성
+    * part4/ch3/03-preview-kafka
+
+    4\. 카프카를 도입하여 채팅 프로젝트에서 푸시 알림 서비스 분리
+    * part4/ch3/04-message-system-add-kafka
+    * part4/ch3/04-message-system-push
+  * **Ch4 책임 분리로 진행하는 모놀리틱 서비스 분해와 Nginx 연동**  
+    2\. 채팅 프로젝트에서 인증 서비스 분리
+    * part4/ch4/02-message-client-split-auth
+    * part4/ch4/02-message-system-auth
+    * part4/ch4/02-message-system-split-auth
+
+    4\. Docker Compose를 사용한 로컬 Nginx LB 구성
+    * part4/ch4/04-preview-nginx
+
+    5\. Nginx를 도입하여 인증 서비스에 고가용성과 확장성을 확보한다.
+    * part4/ch4/05-message-client-add-nginx
+    * part4/ch4/05-message-system-add-nginx
