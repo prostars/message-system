@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: direct-chat-add-seqid
+  data:
+    redis:
+      host: localhost
+      port: 16379
+      repositories:
+        enabled: false

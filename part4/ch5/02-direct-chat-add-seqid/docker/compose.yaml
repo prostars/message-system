@@ -1,0 +1,19 @@
+services:
+  redis:
+    image: redis:7.4.1
+    restart: unless-stopped
+    ports:
+      - "16379:6379"
+    volumes:
+      - ./data/redis:/data
+    command: >
+      redis-server
+      --appendonly yes
+  
+  redis-insight:
+    image: redis/redisinsight:2.64.1
+    restart: unless-stopped
+    ports:
+      - "15540:5540"
+    volumes:
+      - ./data/redis-insight:/data
