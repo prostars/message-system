@@ -1,0 +1,28 @@
+dataSources:
+  node1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    jdbcUrl: jdbc:mysql://localhost:13306/messagesystem?allowPublicKeyRetrieval=true
+    username: dev_user
+    password: dev_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  node2:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    jdbcUrl: jdbc:mysql://localhost:13307/messagesystem?allowPublicKeyRetrieval=true
+    username: dev_user
+    password: dev_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+rules:
+  - !SHARDING
+    tables:
+      message:
+        actualDataNodes: node${1..2}.message
+        databaseStrategy:
+          standard:
+            shardingColumn: channel_id
+            shardingAlgorithmName: db_inline
+    shardingAlgorithms:
+      db_inline:
+        type: INLINE
+        props:
+          algorithm-expression: node${channel_id % 2 + 1}

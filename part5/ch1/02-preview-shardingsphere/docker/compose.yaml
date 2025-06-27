@@ -1,0 +1,25 @@
+services:
+  mysql-node1:
+    image: mysql:8.0.40
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: messagesystem
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_password
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./data/mysql/node1:/var/lib/mysql
+  mysql-node2:
+    image: mysql:8.0.40
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: messagesystem
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_password
+    ports:
+      - "13307:3306"
+    volumes:
+      - ./data/mysql/node2:/var/lib/mysql
