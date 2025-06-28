@@ -3,7 +3,7 @@ services:
     image: mysql:8.0.40
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-udev_user", "-pdev_password" ]
       interval: 10s
       timeout: 5s
       retries: 3

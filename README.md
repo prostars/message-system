@@ -2,6 +2,7 @@
 Example projects for the Backend Development online course  
 https://fastcampus.co.kr/dev_online_chat
 
+# Hands-On Chapters.                 
 * **Part2 채팅 뼈대 프로젝트 개발**
   * **Ch1 테스트에 대한 이야기**  
     4\. Groovy Console 소개
@@ -119,3 +120,39 @@ https://fastcampus.co.kr/dev_online_chat
     5\. Nginx를 도입하여 인증 서비스에 고가용성과 확장성을 확보한다.
     * part4/ch4/05-message-client-add-nginx
     * part4/ch4/05-message-system-add-nginx
+* **Part5 모놀리틱 서비스 분해**
+  * **Ch1 데이터베이스의 고가용성과 확장성 확보를 위한 샤딩**  
+    2\. Apache ShardingSphere를 사용하여 샤딩 구현
+    * part5/ch1/02-preview-shardingsphere
+
+    3\. 스프링을 사용하여 샤딩 직접 구현
+    * part5/ch1/03-preview-sharding
+
+    4\. 채팅 프로젝트에 샤딩 추가
+    * part5/ch1/04-message-system-add-sharding
+  * **Ch2 레디스의 고가용성과 확장성 확보를 위한 클러스터링**  
+    2\. Docker Compose를 사용한 로컬 레디스 클러스터 구성
+    * part5/ch2/02-preview-redis-cluster
+
+    3\. 채팅 프로젝트에 레디스 클러스터 적용
+    * part5/ch2/03-message-system-add-redis-cluster
+    * part5/ch2/03-message-system-auth-add-redis-cluster
+  * **Ch3 책임 분리로 진행하는 모놀리틱 서비스 분해와 양방향 카프카 연동**  
+    2\. Docker Compose를 사용한 로컬 레디스 클러스터 구성
+    * part5/ch2/02-preview-redis-cluster
+
+    3\. 채팅 프로젝트에서 커넥션 서비스 분리하고 카프카 연동
+    * part5/ch3/03-message-system-connection
+    * part5/ch3/03-message-system-push
+
+    4\. 채팅 프로젝트에서 혼자 남겨진 채팅 서비스에 카프카 연동
+    * part5/ch4/04-message-system-message
+  * **Ch4 마지막으로 남은 SPOF 제거를 위한 Nginx 다중 인스턴스와 서비스 디스커버리 연동**  
+    2\. Docker Compose를 사용한 로컬 Consul 클러스터와 Nginx 다중 인스턴스 구성
+    * part5/ch4/02-preview-consul
+
+    3\. 페이크 채팅 클라이언트에 Consul 연동하고 LB 선택 기능 추가
+    * part5/ch4/03-message-client
+    * part5/ch4/03-message-system-auth
+    * part5/ch4/03-message-system-connection
+    * part5/ch4/03-message-system-message
