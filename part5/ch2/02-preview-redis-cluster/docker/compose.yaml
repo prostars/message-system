@@ -1,0 +1,124 @@
+services:
+  mysql:
+    image: mysql:8.0.40
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: messagesystem
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_password
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+
+  redis-node-1:
+    image: bitnami/redis-cluster:7.4.1
+    restart: unless-stopped
+    ports:
+      - "6380:6380"
+      - "16380:16380"
+    volumes:
+      - ./data/redis/node-1:/bitnami/redis/data
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_PORT_NUMBER=6380'
+      - 'REDIS_NODES=${HOST_IP}:6380 ${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385'
+      - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
+      - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6380'
+      - 'REDIS_CLUSTER_ANNOUNCE_BUS_PORT=16380'
+
+  redis-node-2:
+    image: bitnami/redis-cluster:7.4.1
+    restart: unless-stopped
+    ports:
+      - "6381:6381"
+      - "16381:16381"
+    volumes:
+      - ./data/redis/node-2:/bitnami/redis/data
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_PORT_NUMBER=6381'
+      - 'REDIS_NODES=${HOST_IP}:6380 ${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385'
+      - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
+      - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6381'
+      - 'REDIS_CLUSTER_ANNOUNCE_BUS_PORT=16381'
+  
+  redis-node-3:
+    image: bitnami/redis-cluster:7.4.1
+    restart: unless-stopped
+    ports:
+      - "6382:6382"
+      - "16382:16382"
+    volumes:
+      - ./data/redis/node-3:/bitnami/redis/data
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_PORT_NUMBER=6382'
+      - 'REDIS_NODES=${HOST_IP}:6380 ${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385'
+      - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
+      - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6382'
+      - 'REDIS_CLUSTER_ANNOUNCE_BUS_PORT=16382'
+  
+  redis-node-4:
+    image: bitnami/redis-cluster:7.4.1
+    restart: unless-stopped
+    ports:
+      - "6383:6383"
+      - "16383:16383"
+    volumes:
+      - ./data/redis/node-4:/bitnami/redis/data
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_PORT_NUMBER=6383'
+      - 'REDIS_NODES=${HOST_IP}:6380 ${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385'
+      - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
+      - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6383'
+      - 'REDIS_CLUSTER_ANNOUNCE_BUS_PORT=16383'
+  
+  redis-node-5:
+    image: bitnami/redis-cluster:7.4.1
+    restart: unless-stopped
+    ports:
+      - "6384:6384"
+      - "16384:16384"
+    volumes:
+      - ./data/redis/node-5:/bitnami/redis/data
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_PORT_NUMBER=6384'
+      - 'REDIS_NODES=${HOST_IP}:6380 ${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385'
+      - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
+      - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6384'
+      - 'REDIS_CLUSTER_ANNOUNCE_BUS_PORT=16384'
+  
+  redis-node-6:
+    image: bitnami/redis-cluster:7.4.1
+    ports:
+      - "6385:6385"
+      - "16385:16385"
+    volumes:
+      - ./data/redis/node-6:/bitnami/redis/data
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_PORT_NUMBER=6385'
+      - 'REDIS_CLUSTER_REPLICAS=1'
+      - 'REDIS_CLUSTER_CREATOR=yes'
+      - 'REDIS_NODES=${HOST_IP}:6380 ${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385'
+      - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
+      - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
+      - 'REDIS_CLUSTER_ANNOUNCE_PORT=6385'
+      - 'REDIS_CLUSTER_ANNOUNCE_BUS_PORT=16385'
+      
+  redis-insight:
+    image: redis/redisinsight:2.64.1
+    restart: unless-stopped
+    ports:
+      - "15540:5540"
+    volumes:
+      - ./data/redis-insight:/data
