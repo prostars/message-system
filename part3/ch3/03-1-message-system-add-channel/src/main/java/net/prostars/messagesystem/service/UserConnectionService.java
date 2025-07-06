@@ -98,13 +98,13 @@ public class UserConnectionService {
         }
       }
       case ACCEPTED ->
-          Pair.of(Optional.of(partnerUserId), "Already connected with " + partnerUsername);
+          Pair.of(Optional.empty(), "Already connected with " + partnerUsername);
       case PENDING, REJECTED -> {
         log.info(
             "{} invites {} but does not deliver the invitation request.",
             inviterUserId,
             partnerUsername);
-        yield Pair.of(Optional.of(partnerUserId), "Already invited to " + partnerUsername);
+        yield Pair.of(Optional.empty(), "Already invited to " + partnerUsername);
       }
     };
   }
